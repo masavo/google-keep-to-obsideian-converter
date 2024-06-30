@@ -26,7 +26,7 @@ class MarkdownFormatter
     markdown_content += image_files_to_markdown unless @image_files.empty?
     markdown_content += audio_files_to_markdown unless @audio_files.empty?
 
-    markdown_content.lines.map(&:strip).join("\n")
+    markdown_content.lines.map(&:strip).reject { |line| line == '-' }.join("\n")
   end
 
   def list_content_to_markdown
