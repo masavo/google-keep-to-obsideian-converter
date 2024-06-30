@@ -6,7 +6,7 @@ class MarkdownFormatter
   end
 
   def to_markdown
-     <<~MARKDOWN
+    markdown_text = <<~MARKDOWN
       ---
       created_at: #{@data.created_at}
       updated_at: #{@data.updated_at}
@@ -14,7 +14,8 @@ class MarkdownFormatter
       #{labels_to_markdown}
 
       #{content_to_markdown}
-    MARKDOWN.gsub(/\n\n+/, "\n\n")
+    MARKDOWN
+    markdown_text.gsub(/\n\n+/, "\n\n")
   end
 
   private
@@ -24,6 +25,8 @@ class MarkdownFormatter
     markdown_content = content + list_content_to_markdown
     markdown_content += image_files_to_markdown unless @image_files.empty?
     markdown_content += audio_files_to_markdown unless @audio_files.empty?
+
+    markdown_content.lines.map(&:strip).join("\n")
   end
 
   def list_content_to_markdown
