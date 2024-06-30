@@ -8,7 +8,7 @@ class Exec
   def initialize
     @src_path = ARGV[0]
     @target_path = ARGV[1]
-    @max_files = ARGV[2].to_i || 100_000_000
+    @max_files = ARGV[2] ? ARGV[2].to_i : 100_000_000
   end
 
   def run
