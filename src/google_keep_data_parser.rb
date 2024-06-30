@@ -25,9 +25,9 @@ class GoogleKeepDataParser
     @created_at = Time.at(@json_data["createdTimestampUsec"] / 1_000_000).to_datetime.to_s
     @updated_at = Time.at(@json_data["userEditedTimestampUsec"] / 1_000_000).to_datetime.to_s
     @attachments = @json_data["attachments"] || []
+    @list_content = @json_data["listContent"]
     @labels = get_labels
     @content = remove_labels_from_content
-    @list_content = @json_data["listContent"]
   end
 
   def remove_labels_from_content
